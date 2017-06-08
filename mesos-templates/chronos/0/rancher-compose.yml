@@ -1,6 +1,8 @@
 .catalog:
   name: Chronos
   version: v1
+  minimum_rancher_version: v1.0.0
+  maximum_rancher_version: v1.2.0-pre3
   description: |
     Distributed, fault-tolerant cron
   questions:

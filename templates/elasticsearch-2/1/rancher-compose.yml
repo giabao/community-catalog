@@ -1,6 +1,6 @@
 .catalog:
   name: "Elasticsearch"
-  version: "2.3.3"
+  version: "2.4.3-rancher1"
   description: "Elasticsearch. You know, for search"
   questions:
     - variable: cluster_name
@@ -9,18 +9,12 @@
       type: "string"
       required: true
       default: "es"
-    - variable: kopf_port
-      description: "Port for accessing kopf"
-      label: "kopf port:"
+    - variable: "kopf_port"
+      label: "Public Port"
+      description: "Unique public port for kopf"
       type: "int"
-      required: true
       default: 80
-    - variable: kopf_pw
-      description: "kopf basic auth [encrypted password](https://github.com/rancher/catalog-dockerfiles/blob/master/elasticsearch/containers/0.4.0/kopf/README.md#env-variables)"
-      label: "kopf password:"
-      type: "string"
       required: true
-
 elasticsearch-masters:
   metadata:
     elasticsearch:

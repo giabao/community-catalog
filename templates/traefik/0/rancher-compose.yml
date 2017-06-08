@@ -13,20 +13,33 @@
       required: true
       default: 8080
       type: "int"
+    - variable: "https_port"
+      description: "Traefik https public port to listen."
+      label: "Https port:"
+      required: true
+      default: 8443
+      type: "int"
     - variable: "admin_port"
       description: "Traefik admin public port to listen."
       label: "Admin port:"
       required: true
       default: 8000 
-      type: "string"
+      type: "int"
     - variable: "refresh_interval"
       description: "Interval to poll/apply configuration changes." 
       label: "Refresh Interval (s):"
       required: true
       default: 60 
       type: "int"
+    - variable: "ssl_cert"
+      description: "SSL certificate" 
+      label: "SSL certificate:"
+      required: false
+      default: ""
+      type: "certificate"
 traefik:
   retain_ip: true
+  default_cert: ${ssl_cert}
   health_check:
     port: ${admin_port}
     interval: 5000

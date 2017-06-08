@@ -1,6 +1,6 @@
 .catalog:
   name: "Logstash"
-  version: "2.3.2"
+  version: "2.4.1-rancher1"
   description: "Logstash: Process Any Data, From Any Source"
   questions:
     - variable: "collector_inputs"
@@ -13,10 +13,6 @@
       default: |
         udp {
           port => 5000
-          codec => "json"
-        }
-        tcp {
-          port => 6000
           codec => "json"
         }
     - variable: "indexer_filters"
@@ -36,8 +32,10 @@
       required: true
       default: |
         elasticsearch {
-          hosts => "elasticsearch"
-          index => "logstash-%{+YYYY.MM.dd}"
+          hosts => ["elasticsearch.rancher.internal:9200"]
+        }
+        stdout {
+          codec => rubydebug
         }
     - variable: "elasticsearch_link"
       description: |
@@ -52,7 +50,7 @@ logstash-indexer:
     logstash:
       inputs: |
         redis {
-          host => "redis"
+          host => "redis.rancher.internal"
           port => "6379"
           data_type => "list"
           key => "logstash"
@@ -68,7 +66,7 @@ logstash-collector:
         ${collector_inputs}
       outputs: |
         redis {
-          host => "redis"
+          host => "redis.rancher.internal"
           port => "6379"
           data_type => "list"
           key => "logstash"

@@ -2,6 +2,10 @@
 
 A distributed, highly-available key/value store written in Go.
 
+### WARNING:
+
+There is a minor bug in the upgrade strategy for this template. If you are upgrading from v2.3.0, you will need to manually shutdown the nodes in etcd-discovery service. Not doing so will lead to wasted resources.
+
 ### Info:
 
  This creates an N-node etcd cluster on top of Rancher. The bootstrap process is performed using a standalone etcd discovery node. Upon the cluster entering a running state, this discovery service will shutdown. The state of the etcd cluster is a key/value pair stored on etcd itself, in a hidden key at location `/_state`.

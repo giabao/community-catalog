@@ -1,6 +1,6 @@
 kibana-vip:
   ports:
-  - ${kibana_port}:80
+  - "${public_port}:80"
   restart: always
   tty: true
   image: rancher/load-balancer-service
@@ -13,7 +13,7 @@ nginx-proxy-conf:
   labels:
     io.rancher.container.hostname_override: container_name
 nginx-proxy:
-  image: sandinh/nginx:1.10.0
+  image: rancher/nginx:v1.9.4-3
   volumes_from:
     - nginx-proxy-conf
   labels:
@@ -24,7 +24,7 @@ nginx-proxy:
 kibana4:
   restart: always
   tty: true
-  image: kibana:4.5.1
+  image: kibana:4.6.3
   net: "container:nginx-proxy"
   stdin_open: true
   environment:
