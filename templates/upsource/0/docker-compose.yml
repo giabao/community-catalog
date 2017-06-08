@@ -1,0 +1,43 @@
+upsource-data:
+  image: busybox
+  tty: true
+  volumes:
+    - /var/lib/upsource
+    - /opt/upsource/conf
+
+upsource:
+  image: esycat/upsource
+  restart: unless-stopped
+  ports:
+    - ${upsource_port}:8080
+  ulimits:
+    memlock: -1
+    nofile: 100000
+    nproc: 32768
+  labels:
+    io.rancher.sidekicks: upsource-data
+  volumes_from:
+    - upsource-data
+#  volumes:
+#    - /etc/localtime:/etc/localtime:ro
+#    - /etc/timezone:/etc/timezone:ro
+
+hub-data:
+  image: busybox
+  tty: true
+  volumes:
+    - /var/lib/hub
+    - /opt/hub/conf
+
+hub:
+  image: esycat/jetbrains-hub
+  restart: unless-stopped
+  ports:
+      - ${hub_port}:8080
+  labels:
+    io.rancher.sidekicks: hub-data
+  volumes_from:
+    - hub-data
+#  volumes:
+#      - /etc/localtime:/etc/localtime:ro
+#      - /etc/timezone:/etc/timezone:ro
