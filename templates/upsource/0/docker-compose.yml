@@ -1,9 +1,11 @@
 upsource-data:
   image: busybox
-  tty: true
   volumes:
     - /var/lib/upsource
     - /opt/upsource/conf
+  labels:
+    io.rancher.container.start_once: true
+  entrypoint: ["chown", "-R", "500:500", "/var/lib/upsource", "/opt/upsource/conf"]
 
 upsource:
   image: esycat/upsource
@@ -28,6 +30,9 @@ hub-data:
   volumes:
     - /var/lib/hub
     - /opt/hub/conf
+  labels:
+    io.rancher.container.start_once: true
+  entrypoint: ["chown", "-R", "500:500", "/var/lib/hub", "/opt/hub/conf"]
 
 hub:
   image: esycat/jetbrains-hub
