@@ -16,7 +16,7 @@
           description: |
             Set true to avoid vm.max_map_count errors.
             WARN: If set true, host param vm.max_map_count will be update to 262144.
-            thanhbv: Dont support now :D
+            thanhbv: always true :D
           default: false
           required: true
           type: enum
