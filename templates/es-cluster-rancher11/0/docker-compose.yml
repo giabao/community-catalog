@@ -7,7 +7,7 @@ es-master:
     environment:
         - "cluster.name=${cluster_name}"
         - "node.name=$${HOSTNAME}"
-        - "bootstrap.memory_lock=true"
+        # - "bootstrap.memory_lock=true"
         - "xpack.security.enabled=false"
         - "ES_JAVA_OPTS=-Xms${master_heap_size} -Xmx${master_heap_size}"
         - "discovery.zen.ping.unicast.hosts=es-master"
@@ -37,7 +37,7 @@ es-data:
     environment:
         - "cluster.name=${cluster_name}"
         - "node.name=$${HOSTNAME}"
-        - "bootstrap.memory_lock=true"
+        # - "bootstrap.memory_lock=true"
         - "xpack.security.enabled=false"
         - "discovery.zen.ping.unicast.hosts=es-master"
         - "ES_JAVA_OPTS=-Xms${data_heap_size} -Xmx${data_heap_size}"
@@ -68,7 +68,7 @@ es-client:
     environment:
         - "cluster.name=${cluster_name}"
         - "node.name=$${HOSTNAME}"
-        - "bootstrap.memory_lock=true"
+        # - "bootstrap.memory_lock=true"
         - "xpack.security.enabled=false"
         - "discovery.zen.ping.unicast.hosts=es-master"
         - "ES_JAVA_OPTS=-Xms${client_heap_size} -Xmx${client_heap_size}"
