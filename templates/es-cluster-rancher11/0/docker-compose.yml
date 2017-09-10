@@ -22,7 +22,7 @@ es-master:
             soft: 65536
             hard: 65536
     mem_limit: ${master_mem_limit}
-    mem_swappiness: 0
+    # mem_swappiness: 0
     cap_add:
         - IPC_LOCK
     volumes_from:
@@ -51,13 +51,13 @@ es-data:
             soft: 65536
             hard: 65536
     mem_limit: ${data_mem_limit}
-    mem_swappiness: 0
+    # mem_swappiness: 0
     cap_add:
         - IPC_LOCK
     volumes_from:
         - es-storage
-    depends_on:
-        - es-master
+#    depends_on:
+#        - es-master
 
 es-client:
     labels:
@@ -82,18 +82,18 @@ es-client:
             soft: 65536
             hard: 65536
     mem_limit: ${client_mem_limit}
-    mem_swappiness: 0
+    # mem_swappiness: 0
     cap_add:
         - IPC_LOCK
     volumes_from:
         - es-storage
-    depends_on:
-        - es-master
+#    depends_on:
+#        - es-master
 
 es-storage:
     labels:
         io.rancher.container.start_once: true
-    network_mode: none
+    net: none
     image: rawmind/alpine-volume:0.0.2-1
     environment:
         - SERVICE_UID=1000
