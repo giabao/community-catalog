@@ -1,0 +1,5 @@
+name: Upsource
+description: |
+  Jetbrains's Upsource with external Hub
+version: v0.0.1
+category: Code Review

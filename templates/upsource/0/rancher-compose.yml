@@ -1,0 +1,20 @@
+.catalog:
+  name: "Upsource"
+  version: "v0.0.1"
+  description: "Jetbrains's Upsource with external Hub"
+  uuid: upsource-0
+  minimum_rancher_version: v0.51.0
+  questions:
+    - variable: upsource_port
+      description: "HTTP port to access Upsource UI"
+      label: "Upsource HTTP Port"
+      required: true
+      default: "8083"
+      type: "int"
+    - variable: hub_port
+      description: "HTTP port of jetbrains's Hub"
+      label: "Hub HTTP Port"
+      required: true
+      default: "8081"
+      type: "int"
+
